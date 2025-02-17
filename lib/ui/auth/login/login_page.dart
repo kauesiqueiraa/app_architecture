@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:result_command/result_command.dart';
-import 'package:routefly/routefly.dart';
 import 'package:sdf_app_architecture/config/dependencies.dart';
 import 'package:sdf_app_architecture/domain/dtos/credentials.dart';
 import 'package:sdf_app_architecture/domain/validators/credentials_validator.dart';
-import 'package:sdf_app_architecture/main.dart';
-import 'package:sdf_app_architecture/ui/auth/viewmodels/login_viewmodel.dart';
+import 'package:sdf_app_architecture/ui/auth/login/viewmodels/login_viewmodel.dart';
 
 class LoginPage extends StatefulWidget {
 const LoginPage({ super.key });
@@ -27,9 +25,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void _listenable() {
-    if (viewModel.loginCommand.isSuccess) {
-      Routefly.navigate(routePaths.home);
-    } else if (viewModel.loginCommand.isFailure) {
+    if (viewModel.loginCommand.isFailure) {
       final error = viewModel.loginCommand.value as FailureCommand;
 
       final snackBar = SnackBar(
